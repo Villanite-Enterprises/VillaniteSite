@@ -1,0 +1,31 @@
+﻿/*
+    Gold: #FFD700 / #d2b204
+    Black: #0B0B0B
+    Purple: #6F3A80
+    White: #E3E3E3
+    Title Font: Lora
+    Content Font: Roboto
+*/
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #0B0B0B;
+    color: #E3E3E3;
+    padding: 1rem;
+}
+
+a {
+    color: #FFD700;
+}
+
+    a:hover {
+        color: #d2b204;
+    }
+
+li.done {
+    text-decoration: line-through;
+}
