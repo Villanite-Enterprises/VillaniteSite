@@ -22,6 +22,14 @@ namespace VillaniteSite.Controllers
         {
             return View();
         }
+        public IActionResult ToDo()
+        {
+            return View();
+        }
+        public IActionResult HardwareSoftware()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {

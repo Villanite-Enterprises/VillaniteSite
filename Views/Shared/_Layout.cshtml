@@ -6,27 +6,55 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - @ViewData["WebsiteName"]</title>    
+    <title>@ViewData["Title"] - @ViewData["WebsiteName"]</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora|Roboto">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav role="navigation">
-            
-        </nav>
+    <header id="SiteHeader">
+        <div id="MainNav">
+            <a id="Logo" href="/">Villanite</a>
+            <div id="MenuOpener" onclick="toggleMenu(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <nav id="SiteNav" role="navigation">
+                <ul>
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="ToDo">To-Do List</a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="HardwareSoftware">Hardware &amp; Software List</a>
+                    </li>
+                    <li>
+                        <a href="https://twitch.tv/Villanite" target="_blank">Twitch Channel</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <div>
+    <div id="SiteBody">
         <main role="main">
             @RenderBody()
         </main>
     </div>
 
-    <footer>
+    <footer id="SiteFooter">
         <div>
             &copy; 2021 - @ViewData["WebsiteName"] - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>    
+    </footer>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script type="text/javascript">
+        function toggleMenu(triggeringElement) {
+            triggeringElement.classList.toggle("menu-open");
+            document.getElementById("SiteNav").classList.toggle("menu-open")
+        }
+    </script>
 </body>
 </html>
