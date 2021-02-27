@@ -7,7 +7,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - @ViewData["WebsiteName"]</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora|Roboto">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Lora|Roboto&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora|Roboto&display=swap">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -48,7 +49,7 @@
 
     <footer id="SiteFooter">
         <div>
-            &copy; 2021 - @ViewData["WebsiteName"] - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 Villanite Enterprises - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy Policy</a>
         </div>
     </footer>
     <script src="~/js/site.js" asp-append-version="true"></script>
