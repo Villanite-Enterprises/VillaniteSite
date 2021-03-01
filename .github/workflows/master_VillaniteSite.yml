@@ -27,6 +27,14 @@ jobs:
     - name: dotnet publish
       run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
+    #substitute production appsettings entries to appsettings json file
+    - name: App Settings Variable Substitution
+      uses: microsoft/variable-substitution@v1
+      with:
+        files: '${{env.DOTNET_ROOT}}/myapp/appsettings.json'
+      env:
+        APITokens.GitHub: ${{ secrets.GH_API_MACHINE_ACCOUNT_TOKEN }}
+
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
