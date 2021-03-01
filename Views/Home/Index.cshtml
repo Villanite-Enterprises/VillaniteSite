@@ -3,11 +3,51 @@
 }
 
 <article>
-    <header>
-        <h1>@ViewData["Title"]</h1>
-    </header>
-    <p>
-        This website is meant to be a community project built only on-stream. Any updates to logic,
-        code, or design aspects will happen on-stream with viewer input.
-    </p>
+    <section>
+        <header>
+            <h1>@ViewData["Title"]</h1>
+        </header>
+        <p>
+            This website is meant to be a community project built only on-stream. Any updates to logic,
+            code, or design aspects will happen on-stream with viewer input.
+        </p>
+    </section>
+    <section>
+        <header>
+            <h2>
+                Social Links
+            </h2>
+        </header>
+        <div class="link-boxes">
+            <div class="link-box">
+                <div class="graphic">
+                    <img src="~/images/Brand-Black-Nesur.png" />
+                </div>
+                <a class="link" href="https://youtube.com/Villanite" target="_blank">Subscribe to Villanite on YouTube!</a>
+            </div>
+            <div class="link-box">
+                <div class="graphic">
+                    <img src="~/images/Brand-Gold-Nesur.png" />
+                </div>
+                <a class="link" href="https://twitch.tv/Villanite" target="_blank">Follow Villanite on Twitch!</a>
+            </div>
+            <div class="link-box">
+                <div class="graphic">
+                    <img src="~/images/Brand-White-Nesur.png" />
+                </div>
+                <a class="link" href="https://twitter.com/Villanite" target="_blank">Follow Villanite on Twitter!</a>
+            </div>
+        </div>
+    </section>
+    <section>
+        <header>
+            <h2>Does this website look broken to you?</h2>
+        </header>
+        <p>
+            If this website looks like it may be broken on your device or browser, <a asp-area="" asp-controller="Home" asp-action="BrowserSupportSubmission">
+                click this link to automatically submit a GitHub Issue with your browser's information to the development team of the website
+            </a>. If your browser is widely used, we'll be sure to put it on our list ofbrowsers to support.
+        </p>
+    </section>
+
 </article>

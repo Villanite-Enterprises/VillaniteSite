@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Web;
 using VillaniteSite.Models;
 
 namespace VillaniteSite.Controllers
@@ -37,22 +39,31 @@ namespace VillaniteSite.Controllers
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        public IActionResult BrowserSupportSubmission()
         {
+            StringBuilder allHeaders = new StringBuilder();
+
+            foreach (var header in Request.Headers)
+            {                
+                allHeaders.Append("--- " + HttpUtility.HtmlEncode(header.ToString()) + "\\n");
+            }
+
             string gitHubApiToken = _config.GetSection("APITokens").GetSection("GitHub").Value;
 
             httpclient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("token", gitHubApiToken);
             httpclient.DefaultRequestHeaders.Add("User-Agent", "C# Application");
 
-            HttpContent bodyContent = new StringContent("{\"title\":\"Testing\", \"body\":\"This is a test.\"}");
+            string jsonBody = "{\"title\":\"New Browser Support Request\", \"body\":\"" + allHeaders.ToString() + "\"}";
 
-            var callResponse = httpclient.PostAsync("https://api.github.com/repos/Villanite-Enterprises/VillaniteSite/issues", bodyContent).Result;
+            HttpContent bodyContent = new StringContent(jsonBody);
 
-            //var callResponse = httpclient.GetAsync("https://api.github.com/repos/Villanite-Enterprises/VillaniteSite/issues").Result;
+            httpclient.PostAsync("https://api.github.com/repos/Villanite-Enterprises/VillaniteSite/issues", bodyContent);
 
-            ViewBag.Temp = callResponse.Content.ReadAsStringAsync().Result;
+            return View();
+        }
 
+        public IActionResult Privacy()
+        {
             return View();
         }
 
