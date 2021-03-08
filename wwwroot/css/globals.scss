@@ -41,10 +41,10 @@ h6 {
 }
 
 a {
-    color: $gold;
+    color: $primary;
     transition: 0.2s;
 
     &:hover {
-        color: $darkgold;
+        color: $primary-dark;
     }
 }

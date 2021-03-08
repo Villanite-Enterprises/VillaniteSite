@@ -1,0 +1,80 @@
+﻿@model VillaniteSite.Models.BrowserSupportViewModel
+@{
+    ViewData["Title"] = "Browser Support Request";
+}
+
+<article>
+    <section>
+        <header>
+            <h1>@ViewData["Title"]</h1>
+        </header>
+        @if (Model.IsRobot)
+        {
+            <div class="alert alert-negative">
+                <p>This feature is not supported for your specific User-Agent.</p>
+            </div>
+        }
+        else
+        {
+            <p>
+                By submitting a browser support request, you will be sending along all of your browser's current headers. If you would
+                rather not share this information with the public, it is recommended that you do not use this feature. If you understand
+                what this all means, however, and you would still like to request that we support your browser on this website, click
+                the button below.
+            </p>
+            <p id="SubmitBrowserSupportRequestButton">
+                <button class="btn btn-primary" onclick="submitBrowserSupportRequest();">I understand, please support my browser.</button>
+                <a class="btn btn-primary btn-outline" href="/">Nevermind!</a>
+
+            </p>
+            <div id="NewRequestNotice" class="alert alert-positive d-none">
+                <p>
+                    Thank you for taking the time to send us your browser info! The development team for this website will review your submission and
+                    do what we can to make sure your browser is supported, so long as it is a widely used browser.
+                </p>
+            </div>
+            <div id="AlreadySentNotice" class="alert alert-info d-none">
+                <p>
+                    It seems you've already requested support for this browser!
+                </p>
+            </div>
+            <div id="ErrorNotice" class="alert alert-negative d-none">
+                <p>
+                    There seems to have been an error submitting your request. If you'd still like to pursue requesting support, please
+                    <a href="https://github.com/Order-of-the-Nesur/VillaniteSite" target="_blank">
+                        contact the development team directly via GitHub
+                    </a>.
+                </p>
+            </div>
+        }
+    </section>
+</article>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        if (getCookie("V_HasSubmittedBrowserSupportRequest") == "true") {
+            document.getElementById("SubmitBrowserSupportRequestButton").classList.toggle("d-none");
+            document.getElementById("AlreadySentNotice").classList.toggle("d-none");
+        }
+    });
+
+    function submitBrowserSupportRequest() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                if (this.status == 201) {
+                    document.getElementById("SubmitBrowserSupportRequestButton").classList.toggle("d-none");
+                    document.getElementById("NewRequestNotice").classList.toggle("d-none");
+                    setCookie("V_HasSubmittedBrowserSupportRequest", "true", 365);
+                }
+                else if (this.status == 500) {
+                    document.getElementById("SubmitBrowserSupportRequestButton").classList.toggle("d-none");
+                    document.getElementById("ErrorNotice").classList.toggle("d-none");
+                }
+            }
+        }
+
+        xhttp.open("POST", "/BrowserSupport/SubmitNewRequest", true);
+        xhttp.send();
+    }    
+</script>

@@ -41,19 +41,34 @@
         </main>
     </div>
 
+    <div id="CookieNotice" class="d-none">
+        <div class="cookie-wrapper">
+            <div class="notice-text">
+                <span>
+                    By using this website, you understand that this site may be collecting information about your browser session and using cookies
+                    to track your journey. If you do not want this information tracked, please leave this site. You can close this message by clicking
+                    on the "I Understand" button.
+                </span>
+            </div>
+            <div class="notice-button">
+                <button class="btn btn-primary btn-full-width" onclick="acceptCookieNotice();">I Understand</button>
+            </div>
+        </div>
+    </div>
+
     <footer id="SiteFooter">
         <div>
-            &copy; 2021 Villanite Enterprises - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy Policy</a>
+            &copy; 2021 Order of the Nesur - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy Policy</a>
         </div>
     </footer>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-
     <script type="text/javascript">
-        function toggleMenu(triggeringElement) {
-            triggeringElement.classList.toggle("menu-open");
-            document.getElementById("SiteNav").classList.toggle("menu-open")
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+            if (getCookie("V_AcceptedCookieNotice") != "true") {
+                document.getElementById("CookieNotice").classList.toggle("d-none");
+            }
+        });
     </script>
 </body>
 </html>

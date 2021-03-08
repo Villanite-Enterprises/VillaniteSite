@@ -7,11 +7,11 @@
     line-height: 1.75rem;
     justify-content: space-between;
     padding: 1rem 0 0 0;
-    border-bottom: 1px solid $gold;
-    box-shadow: 0px -8px 10px 5px $gold;
+    border-bottom: 1px solid $primary;
+    box-shadow: 0px -8px 10px 5px $primary;
     position: fixed;
     width: 100%;
-    background: $black;
+    background: $black-transparent;
 
     > a, > div {
         flex: 1 auto;
@@ -46,14 +46,14 @@
     div {
         width: 1em;
         max-height: 0.15em;
-        background-color: $gold;
+        background-color: $primary;
         flex: 1;
         justify-content: space-between;
         transition: 0.4s;
     }
 
     &:hover div {
-        background-color: $darkgold;
+        background-color: $primary-dark;
     }
 
     &.menu-open {
@@ -91,7 +91,7 @@
             list-style: none;
 
             &:first-child a {
-                border-top: 1px solid $gold;
+                border-top: 1px solid $primary;
             }
         }
 
@@ -122,39 +122,128 @@
     font-size: .75rem;
     text-align: right;
     padding: .5rem 1rem;
-    border-top: 1px solid $gold;
+    border-top: 1px solid $primary;
 
     a {
         text-decoration: none;
     }
 }
 
-.notification {
+#CookieNotice {
+    position: fixed;
+    bottom: 0;
+    background: #000;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+
+    .cookie-wrapper {
+        max-width: 1024px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .notice-button {
+        text-align: center;
+    }
+
+    .notice-text {
+        padding-bottom: 1rem;
+    }
+}
+
+.d-none {
+    display: none !important;
+}
+
+.btn {
+    border: 1px solid;
+    border-color: $white;
+    border-radius: $border-radius-size;
+    background-color: $white;
+    color: $black;
+    padding: .4rem .7rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    line-height: 1rem;
+
+    &.btn-primary {
+        background-color: $primary;
+        border-color: $primary;
+
+        &:hover {
+            background-color: $primary-dark;
+            border-color: $primary-dark;
+        }
+
+        &.btn-outline {
+            color: $primary;
+
+            &:hover {
+                color: $primary-dark;
+            }
+        }
+    }
+
+    &.btn-outline, &.btn-outline:hover {
+        background: none;
+    }
+
+    &.btn-full-width {
+        display: block;
+        width: 100%;
+    }
+}
+
+.alert {
     border: 3px solid;
     border-color: #2a2929;
     border-radius: $border-radius-size;
     background-color: #939393;
-    color: black;
+    color: $black;
     padding: 0 1rem;
 
-    &.positive {
-        border-color: #12a912;
-        background-color: #bdd7bd;
+    &.alert-positive {
+        border-color: $positive-color;
+        background-color: $positive-background;
+
+        a {
+            color: $positive-color
+        }
     }
 
-    &.negative {
-        border-color: #a91212;
-        background-color: #d7bdbd;
+    &.alert-negative {
+        border-color: $negative-color;
+        background-color: $negative-background;
+
+        a {
+            color: $negative-color
+        }
     }
 
-    &.warning {
-        border-color: #a99812;
-        background-color: #d7d4bd;
+    &.alert-warning {
+        border-color: $warning-color;
+        background-color: $warning-background;
+
+        a {
+            color: $warning-color
+        }
     }
 
-    &.info {
-        border-color: #1272a9;
-        background-color: #bdc9d7;
+    &.alert-info {
+        border-color: $info-color;
+        background-color: $info-background;
+
+        a {
+            color: $info-color
+        }
+    }
+
+    a:hover {
+        color: $black;
     }
 }
 
@@ -217,10 +306,29 @@
 
                 a {
                     font-size: 1rem;
-                    background: $black;
+                    background: none;
                     border-bottom: none;
                     padding: 0 1em;
                 }
+            }
+        }
+    }
+
+    #CookieNotice {
+        .cookie-wrapper {
+            flex-direction: row;
+        }
+
+        .notice-text {
+            padding-bottom: 0;
+            flex: 1 0 75%;
+        }
+
+        .notice-button {
+            flex: 1 0 25%;
+
+            .btn {
+                height: 100%;
             }
         }
     }
